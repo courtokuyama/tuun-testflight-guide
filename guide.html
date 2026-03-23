@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUUN TestFlight 導入ガイド</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--card:#161b22;--card2:#1c2333;
+  --green:#2dd4a8;--green-dim:rgba(45,212,168,.15);
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,.12);
+  --yellow:#eab308;--yellow-dim:rgba(234,179,8,.1);
+  --text:#e6edf3;--sub:rgba(230,237,243,.55);--muted:rgba(230,237,243,.35);
+  --border:rgba(230,237,243,.08);
+  --slide-w:960px;--slide-h:1358px;
+}
+html{background:#000}
+body{font-family:'Noto Sans JP','DM Mono',sans-serif;color:var(--text);background:#000;margin:0;display:flex;flex-direction:column;align-items:center;gap:0}
+@media print{
+  @page{size:960px 1358px;margin:0}
+  body{background:#000;margin:0;padding:0;gap:0}
+  .slide{margin:0!important;box-shadow:none!important;border-radius:0!important;page-break-after:always;page-break-inside:avoid;width:960px!important;height:1358px!important}
+}
+
+/* ── SLIDE ── */
+.slide{width:var(--slide-w);height:var(--slide-h);background:var(--bg);position:relative;overflow:hidden;flex-shrink:0;padding:60px 72px}
+
+/* ── COVER ── */
+.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0}
+.cover-blob1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,168,.12) 0%,transparent 70%);top:-120px;right:-140px;pointer-events:none}
+.cover-blob2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%);bottom:-80px;left:-160px;pointer-events:none}
+.cover-tag{font-family:'DM Mono',monospace;font-size:12px;color:var(--sub);letter-spacing:.2em;margin-bottom:36px}
+.cover-icon{width:88px;height:88px;background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));border-radius:22px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.cover-icon img{width:64px;height:64px;border-radius:14px}
+.cover h1{font-size:48px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.cover-line{width:48px;height:3px;background:var(--green);border-radius:2px;margin:40px auto}
+.cover-req{background:var(--card);border-radius:12px;padding:28px 40px;text-align:left;width:100%;max-width:560px}
+.cover-req-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--green);letter-spacing:.15em;font-weight:500;margin-bottom:14px}
+.cover-req-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:14px;color:var(--sub)}
+.cover-req-row span:last-child{color:var(--text);font-weight:500}
+.cover-footer{position:absolute;bottom:32px;left:72px;right:72px;display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+
+/* ── SLIDE HEADER ── */
+.slide-logo{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;letter-spacing:.12em;color:var(--text);margin-bottom:40px}
+.slide-step{font-family:'DM Mono',monospace;font-size:12px;color:var(--green);letter-spacing:.15em;margin-bottom:10px}
+.slide-title{font-size:32px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.slide-sub{font-size:14px;color:var(--sub);margin-bottom:36px}
+
+/* ── STEP CARDS ── */
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 28px;margin-bottom:16px;display:flex;align-items:flex-start;gap:16px}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--green);color:#0d1117;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-card h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step-card p{font-size:13px;color:var(--sub);line-height:1.6}
+
+/* ── INFO BOX ── */
+.info-box{border-radius:12px;padding:22px 28px;margin-bottom:16px}
+.info-box.blue{background:var(--blue-dim);border:1px solid rgba(59,130,246,.2)}
+.info-box.green{background:var(--green-dim);border:1px solid rgba(45,212,168,.2)}
+.info-box.yellow{background:var(--yellow-dim);border:1px solid rgba(234,179,8,.2)}
+.info-box.dark{background:var(--card);border:1px solid var(--border)}
+.info-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;font-weight:500;margin-bottom:10px}
+.info-label.green-text{color:var(--green)}
+.info-label.blue-text{color:var(--blue)}
+.info-label.yellow-text{color:var(--yellow)}
+.info-box .big-text{font-size:20px;font-weight:700;letter-spacing:.01em}
+.info-box p,.info-box li{font-size:13px;color:var(--sub);line-height:1.7}
+.info-box ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.info-box li{display:flex;align-items:flex-start;gap:8px}
+.info-box li::before{content:'→';color:var(--yellow);flex-shrink:0}
+
+/* ── EMAIL BOX ── */
+.email-row{display:flex;gap:12px;margin-bottom:16px}
+.email-card{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px}
+.email-card.highlight{border-color:rgba(59,130,246,.3);background:var(--blue-dim)}
+.email-card-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
+.email-card-from{font-size:11px;color:var(--sub);margin-bottom:8px}
+.email-card-from strong{color:var(--text);font-weight:600;font-size:13px}
+.email-card-subject{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.email-card-body{font-size:12px;color:var(--sub);line-height:1.6}
+.email-card-body span{display:block}
+.email-note{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 20px;margin-bottom:16px;line-height:1.6}
+.email-note strong{color:var(--yellow);font-weight:600}
+
+/* ── CONTENT LIST ── */
+.content-list{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 24px;margin-bottom:16px}
+.content-list-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.content-item{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:13px;color:var(--sub)}
+.content-item .badge{font-family:'DM Mono',monospace;font-size:10px;background:rgba(45,212,168,.15);color:var(--green);padding:2px 8px;border-radius:4px;flex-shrink:0}
+
+/* ── SLIDE FOOTER ── */
+.slide-footer{position:absolute;bottom:32px;left:72px;right:72px;display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+
+/* ── FINAL FOOTER ── */
+.final-section{margin-top:auto;text-align:center;padding-top:32px;border-top:1px solid var(--border)}
+.final-icon{width:56px;height:56px;margin:0 auto 16px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border-radius:14px;display:flex;align-items:center;justify-content:center}
+.final-icon img{width:40px;height:40px;border-radius:10px}
+.final-email{font-size:15px;color:var(--green);margin-bottom:4px}
+.final-url{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ===== SLIDE 1: COVER ===== -->
+<div class="slide cover">
+  <div class="cover-blob1"></div>
+  <div class="cover-blob2"></div>
+  <div class="cover-icon">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3f/24/3c/3f243c75-73c5-b9c8-12a0-e0f7cf9963c8/AppIcon-0-0-1x_U007epad-0-1-85-220.png/230x0w.webp" alt="TestFlight">
+  </div>
+  <div class="cover-tag">TUUN INSIDE &nbsp;|&nbsp; TEST LAUNCH</div>
+  <h1>TestFlight</h1>
+  <p style="font-size:16px;color:var(--sub);font-weight:400;margin-top:4px">導入ガイド</p>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">アプリのダウンロードからログインまでの手順</p>
+  <div class="cover-line"></div>
+  <div class="cover-req">
+    <div class="cover-req-title">REQUIREMENTS</div>
+    <div class="cover-req-row"><span>iPhone / iPad</span><span>iOS 16.0以降</span></div>
+    <div class="cover-req-row"><span>Apple ID</span><span>サインイン済みであること</span></div>
+    <div class="cover-req-row"><span>所要時間</span><span>約5分</span></div>
+  </div>
+  <div class="cover-footer">
+    <span style="color:var(--green)">tuunclub.com</span>
+    <span>v1.1 — 2026.03</span>
+  </div>
+</div>
+
+<!-- ===== SLIDE 2: STEP 1 ===== -->
+<div class="slide">
+  <div class="slide-logo">TUUN</div>
+  <div class="slide-step">STEP 1 / 3</div>
+  <div class="slide-title">TestFlightをダウンロード</div>
+  <div class="slide-sub">App Storeから無料でインストールできます</div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div><h3>App Storeを開く</h3><p>ホーム画面からApp Storeアプリをタップして開いてください。</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div><h3>「TestFlight」で検索</h3><p>画面下部の「検索」タブをタップし、検索バーに「TestFlight」と入力してください。</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div><h3>「入手」をタップしてインストール</h3><p>Apple製のTestFlightアプリを見つけて「入手」をタップ。Face ID / Touch IDで認証してください。</p></div>
+  </div>
+
+  <div class="info-box blue">
+    <div class="info-label blue-text">DIRECT LINK</div>
+    <p>下記リンクから直接ダウンロードできます：</p>
+    <p style="color:var(--blue);margin-top:4px">apps.apple.com/app/testflight/id899247664</p>
+  </div>
+
+  <div class="info-box green">
+    <div class="info-label green-text">POINT</div>
+    <p>TestFlightはApple公式のベータテストアプリです。<br>完全無料で安全にご利用いただけます。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--muted);margin-top:8px">※ TestFlightのアイコンはオレンジとブルーの円形矢印のマークです</p>
+
+  <div class="slide-footer">
+    <span>TUUN TestFlight Guide</span>
+    <span>1 / 3</span>
+  </div>
+</div>
+
+<!-- ===== SLIDE 3: STEP 2 ===== -->
+<div class="slide">
+  <div class="slide-logo">TUUN</div>
+  <div class="slide-step">STEP 2 / 3</div>
+  <div class="slide-title">招待メールからアプリを取得</div>
+  <div class="slide-sub">届いたメールのリンクをタップするだけでOK</div>
+
+  <div class="email-note">
+    <strong>⚠ 注意：</strong>TestFlightの招待メールは <strong>Apple（no_reply@email.apple.com）</strong>から届きます。<br>social@tuunclub.com からではありませんのでご注意ください。「迷惑メール」フォルダも確認してください。
+  </div>
+
+  <div class="email-row">
+    <div class="email-card highlight">
+      <div class="email-card-label">メール ①：TestFlight招待</div>
+      <div class="email-card-from">From: <strong>no_reply@email.apple.com</strong></div>
+      <div class="email-card-subject">You're invited to test TUUN</div>
+      <div class="email-card-body">
+        <span>・TestFlight招待リンク</span>
+      </div>
+    </div>
+    <div class="email-card">
+      <div class="email-card-label">メール ②：ログイン情報</div>
+      <div class="email-card-from">From: <strong>social@tuunclub.com</strong></div>
+      <div class="email-card-subject">TUUNログイン情報のご案内</div>
+      <div class="email-card-body">
+        <span>・ログインID（メールアドレス）</span>
+        <span>・パスワード</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div><h3>Appleからのメールの招待リンクをタップ</h3><p>no_reply@email.apple.com から届くメール内のTestFlight招待リンクをタップしてください。Safariが開きます。</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div><h3>「テストを開始」をタップ</h3><p>Safariに「テストを開始」ボタンが表示されます。タップするとTestFlightアプリが起動します。</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div><h3>「承諾」→「インストール」</h3><p>TestFlight内でTUUNアプリの情報が表示されます。「承諾」→「インストール」の順にタップ。</p></div>
+  </div>
+
+  <div class="info-box yellow" style="margin-top:8px">
+    <div class="info-label yellow-text">TROUBLESHOOTING</div>
+    <ul>
+      <li>リンクが開けない場合 → iPhone / iPadのSafariで開いてください。PCでは使用できません。</li>
+      <li>「アプリが見つかりません」と表示 → 数分待ってから再度リンクをタップしてください。</li>
+      <li>メールが届かない場合 → 迷惑メールフォルダをご確認ください。差出人は no_reply@email.apple.com です。</li>
+    </ul>
+  </div>
+
+  <div class="slide-footer">
+    <span>TUUN TestFlight Guide</span>
+    <span>2 / 3</span>
+  </div>
+</div>
+
+<!-- ===== SLIDE 4: STEP 3 ===== -->
+<div class="slide">
+  <div class="slide-logo">TUUN</div>
+  <div class="slide-step">STEP 3 / 3</div>
+  <div class="slide-title">アプリを開いてログイン</div>
+  <div class="slide-sub">インストール完了後、すぐに始められます</div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div><h3>TUUNアプリを開く</h3><p>ホーム画面にTUUNアプリが追加されています。タップして起動。（TestFlight内の「開く」からもOK）</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div><h3>ログイン</h3><p>social@tuunclub.com から届いたメールに記載のログインIDとパスワードを入力してログインしてください。</p></div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div><h3>セットアップ完了！</h3><p>プロフィールを入力したら、TUUNをお使いいただけます。</p></div>
+  </div>
+
+  <div class="info-box green" style="margin-top:12px">
+    <div class="info-label green-text">BETA TEST INFO</div>
+    <p>• ベータ版は90日間有効です。期限が近づくと更新が配信されます。<br>
+    • アプリの自動アップデートをONにしておくと便利です。<br>
+    • 不具合を見つけたら、スクリーンショットを撮ってフィードバックをお送りください。</p>
+  </div>
+
+  <div class="final-section">
+    <div class="final-icon">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3f/24/3c/3f243c75-73c5-b9c8-12a0-e0f7cf9963c8/AppIcon-0-0-1x_U007epad-0-1-85-220.png/230x0w.webp" alt="TUUN">
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-bottom:16px">ご不明な点はお気軽にお問い合わせください</p>
+    <div class="final-email">social@tuunclub.com</div>
+    <div class="final-url">tuunclub.com</div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TUUN TestFlight Guide</span>
+    <span>3 / 3</span>
+  </div>
+</div>
+
+</body>
+</html>
