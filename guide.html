@@ -152,13 +152,6 @@ body{font-family:'Noto Sans JP','DM Mono',sans-serif;color:var(--text);backgroun
     <p style="color:var(--blue);margin-top:4px">apps.apple.com/app/testflight/id899247664</p>
   </div>
 
-  <div class="info-box dark">
-    <div class="info-label green-text">TUUN TESTFLIGHT 招待リンク</div>
-    <p>TestFlightをインストールしたら、下記リンクをiPhoneのSafariで開いてください：</p>
-    <p class="big-text" style="color:var(--green);margin-top:8px">testflight.apple.com/join/6F92yVx4</p>
-    <p style="margin-top:6px;font-size:12px;color:var(--muted)">※ このリンクからStep 2のメール招待なしで直接TUUNをインストールできます</p>
-  </div>
-
   <div class="info-box green">
     <div class="info-label green-text">POINT</div>
     <p>TestFlightはApple公式のベータテストアプリです。<br>完全無料で安全にご利用いただけます。</p>
@@ -176,59 +169,67 @@ body{font-family:'Noto Sans JP','DM Mono',sans-serif;color:var(--text);backgroun
 <div class="slide">
   <div class="slide-logo">TUUN</div>
   <div class="slide-step">STEP 2 / 3</div>
-  <div class="slide-title">招待メールからアプリを取得</div>
-  <div class="slide-sub">届いたメールのリンクをタップするだけでOK</div>
+  <div class="slide-title">TUUNアプリをインストール</div>
+  <div class="slide-sub">下記の2つの方法のうち、どちらか1つでインストールできます</div>
+
+  <!-- 方法の選択 -->
+  <div style="display:flex;gap:16px;margin-bottom:20px">
+    <!-- 方法A -->
+    <div style="flex:1;background:var(--green-dim);border:2px solid rgba(45,212,168,.35);border-radius:14px;padding:24px 24px 20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div style="background:var(--green);color:#0d1117;font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;font-family:'DM Mono',monospace">方法 A</div>
+        <span style="font-size:13px;font-weight:600;color:var(--green)">おすすめ・かんたん</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:8px">招待リンクから直接インストール</h3>
+      <p style="font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:12px">下記リンクをiPhoneのSafariで開くだけ。メールを待つ必要はありません。</p>
+      <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:14px 18px;margin-bottom:12px">
+        <p style="font-size:10px;color:var(--muted);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:.1em">INVITE LINK</p>
+        <p style="font-size:19px;font-weight:700;color:var(--green);letter-spacing:.01em">testflight.apple.com/join/6F92yVx4</p>
+      </div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.65">
+        ① 上記リンクをSafariで開く<br>
+        ② 「テストを開始」をタップ<br>
+        ③ TestFlightが開く →「承諾」→「インストール」
+      </div>
+    </div>
+    <!-- 方法B -->
+    <div style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 24px 20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div style="background:rgba(255,255,255,.1);color:var(--sub);font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;font-family:'DM Mono',monospace">方法 B</div>
+        <span style="font-size:13px;font-weight:600;color:var(--sub)">メール経由</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:8px">招待メールからインストール</h3>
+      <p style="font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:12px">Appleから届く招待メール内のリンクからインストールします。</p>
+      <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:14px 18px;margin-bottom:12px">
+        <p style="font-size:10px;color:var(--muted);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:.1em">FROM</p>
+        <p style="font-size:14px;font-weight:600;color:var(--text)">no_reply@email.apple.com</p>
+        <p style="font-size:11px;color:var(--muted);margin-top:4px">件名：You're invited to test TUUN</p>
+      </div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.65">
+        ① メール内の招待リンクをタップ<br>
+        ② 「テストを開始」をタップ<br>
+        ③ TestFlightが開く →「承諾」→「インストール」
+      </div>
+    </div>
+  </div>
 
   <div class="email-note">
-    <strong>⚠ 注意：</strong>TestFlightの招待メールは <strong>Apple（no_reply@email.apple.com）</strong>から届きます。<br>social@tuunclub.com からではありませんのでご注意ください。「迷惑メール」フォルダも確認してください。
+    <strong>💡 ヒント：</strong>方法Aの招待リンクが一番かんたんです。メールが届かない場合も方法Aなら問題ありません。
   </div>
 
-  <div class="email-row">
-    <div class="email-card highlight">
-      <div class="email-card-label">メール ①：TestFlight招待</div>
-      <div class="email-card-from">From: <strong>no_reply@email.apple.com</strong></div>
-      <div class="email-card-subject">You're invited to test TUUN</div>
-      <div class="email-card-body">
-        <span>・TestFlight招待リンク</span>
-      </div>
-    </div>
-    <div class="email-card">
-      <div class="email-card-label">メール ②：ログイン情報</div>
-      <div class="email-card-from">From: <strong>social@tuunclub.com</strong></div>
-      <div class="email-card-subject">TUUNログイン情報のご案内</div>
-      <div class="email-card-body">
-        <span>・ログインID（メールアドレス）</span>
-        <span>・パスワード</span>
-      </div>
-    </div>
+  <div class="email-card" style="margin-bottom:16px">
+    <div class="email-card-label">※ ログイン情報は別メールで届きます</div>
+    <div class="email-card-from">From: <strong>social@tuunclub.com</strong></div>
+    <div class="email-card-subject">TUUNログイン情報のご案内</div>
+    <div class="email-card-body"><span>・ログインID（メールアドレス）・パスワード → Step 3で使います</span></div>
   </div>
 
-  <div class="info-box green">
-    <div class="info-label green-text">直接リンクで簡単インストール</div>
-    <p>招待メールを待たずに、下記リンクから直接インストールできます：</p>
-    <p class="big-text" style="color:var(--green);margin-top:6px">testflight.apple.com/join/6F92yVx4</p>
-    <p style="margin-top:4px;font-size:12px;color:var(--muted)">iPhoneのSafariで開いてください。リンクをタップ→「テストを開始」→「インストール」で完了です。</p>
-  </div>
-
-  <div class="step-card">
-    <div class="step-num">1</div>
-    <div><h3>招待リンクまたはメールのリンクをタップ</h3><p>上記の招待リンク、または no_reply@email.apple.com から届くメール内のリンクをタップしてください。Safariが開きます。</p></div>
-  </div>
-  <div class="step-card">
-    <div class="step-num">2</div>
-    <div><h3>「テストを開始」をタップ</h3><p>Safariに「テストを開始」ボタンが表示されます。タップするとTestFlightアプリが起動します。</p></div>
-  </div>
-  <div class="step-card">
-    <div class="step-num">3</div>
-    <div><h3>「承諾」→「インストール」</h3><p>TestFlight内でTUUNアプリの情報が表示されます。「承諾」→「インストール」の順にタップ。</p></div>
-  </div>
-
-  <div class="info-box yellow" style="margin-top:8px">
+  <div class="info-box yellow" style="margin-top:0">
     <div class="info-label yellow-text">TROUBLESHOOTING</div>
     <ul>
-      <li>リンクが開けない場合 → iPhone / iPadのSafariで開いてください。PCでは使用できません。</li>
-      <li>「アプリが見つかりません」と表示 → 数分待ってから再度リンクをタップしてください。</li>
-      <li>メールが届かない場合 → 迷惑メールフォルダをご確認ください。差出人は no_reply@email.apple.com です。</li>
+      <li>リンクが開けない → iPhone / iPadの<strong style="color:var(--text)">Safari</strong>で開いてください。PCでは使用できません。</li>
+      <li>「アプリが見つかりません」→ 数分待ってから再度リンクをタップしてください。</li>
+      <li>招待メールが届かない → 迷惑メールを確認、または方法Aの招待リンクをお使いください。</li>
     </ul>
   </div>
 
